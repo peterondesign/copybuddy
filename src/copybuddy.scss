@@ -413,7 +413,8 @@
         color: #ffffff;
         justify-content: space-between;
         div:nth-child(1) {
-          width: 40%;
+          width: 25%;
+          margin-right: 10px;
         }
         div:nth-child(2) {
           width: 10%;
@@ -457,6 +458,7 @@
       div {
         margin-bottom: 40px;
         width: auto !important;
+        margin-right: 0px;
       }
     }
   }
@@ -517,4 +519,14 @@ a.link {
     font-size: 25px;
     width: auto;
   }
+}
+
+.navbar_alt {
+  // padding: 106px 85px;
+  background: #151515;
+  display: flex;
+  justify-content: center;
+  padding: 50px 85px;
+  background: #151515;
+  width: auto;
 }
