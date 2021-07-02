@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-// import all_copies from "./copybuddy_allcopies.js";
+import AllCopies from "./copybuddy_allcopies";
+
 import logo from "./copybuddy_logo_white.svg";
 import search_icon from "./search_icon_white.svg";
 import right_panel from "./hero_section_art_secondpanel.png";
@@ -28,7 +29,7 @@ function App() {
               <p className="hero_section_art_firstpanel_largetext">
                 Go further than placeholder text
               </p>
-              <a href="/all" rel="noreferrer">
+              {/* <a href="/all" rel="noreferrer"> */}
               <div className="hero_section_art_firstpanel_searchbox">
                 <input
                   className="hero_section_art_firstpanel_searchbox_input"
@@ -48,7 +49,7 @@ function App() {
                   <img src={floating_box} alt="floating_box"></img>
                 </div>
               </div>
-              </a>
+              {/* </a> */}
 
             </div>
             <div className="hero_section_art_secondpanel">
@@ -132,6 +133,9 @@ function App() {
           </div>
         </div>
       </div>
+
+      <AllCopies/>
+
 
       <div className="customisation_section">
         <div className="customisation_section_inner">
@@ -255,6 +259,7 @@ function App() {
           </a>
         </div>
       </div>
+
     </div>
   );
 }

@@ -392,12 +392,25 @@
       justify-content: center;
       margin-bottom: 80px;
     }
+    &_introductiontext.left {
+      text-align: left;
+      justify-content: center;
+      margin-bottom: 80px;
+    }
     &_introductiontext > p {
       font-family: Circular Std;
       font-size: 30px;
       line-height: 38px;
       /* identical to box height */
       text-align: center;
+      color: #151515;
+      margin-bottom: 30px;
+    }
+    &_introductiontext > p.left {
+      font-family: Circular Std;
+      font-size: 30px;
+      line-height: 38px;
+      /* identical to box height */
       color: #151515;
       margin-bottom: 30px;
     }
@@ -529,4 +542,12 @@ a.link {
   padding: 50px 85px;
   background: #151515;
   width: auto;
+}
+
+.custom-pt-5 {
+  margin: 25px 0px;
+}
+
+.primary_bar {
+  border: 1px solid #d87342 !important;
 }

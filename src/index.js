@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import CopybuddyHome from "./copybuddy_home";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AllCopies from "./copybuddy_allcopies";
 
 import reportWebVitals from "./reportWebVitals";
@@ -10,9 +10,11 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Route exact path="/" component={CopybuddyHome} />
-      <Route path = "/all" component = {AllCopies} />
-      {/* <CopybuddyHome /> */}
+      <Switch>
+        <Route path="/" component={CopybuddyHome} />
+        <Route path="/all" component={AllCopies} />
+        {/* <CopybuddyHome /> */}
+      </Switch>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
