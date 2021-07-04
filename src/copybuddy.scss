@@ -552,12 +552,18 @@ a.link {
   border: 1px solid #d87342 !important;
 }
 
-.center_image{
+.center_image {
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  >p{
+  > p {
     display: block;
   }
+}
+
+.make_sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }

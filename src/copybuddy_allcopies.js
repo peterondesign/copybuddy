@@ -15,6 +15,7 @@ function App() {
   const [custom_input, setInput] = useState("XYZ");
   let [loading_copies, setCopies] = useState(false);
   const [search_input_initial, setSearchInput] = useState("");
+  let search_input_final = search_input_initial.toLowerCase();
 
   // const [page, setPage] = useState(0),
   //   maxPage = Math.ceil(data.length / 5),
@@ -59,61 +60,47 @@ function App() {
     setSearchInput(s.target.value);
   }
 
-  // if (search_input_initial.length > 0) {
-  //   let search_input_final = search_input_initial.toLowerCase();
-  //   console.log("Got it!");
-  //   for (var i = 0; i < copy.length; i++) {
-  //     if (search_input_final === copy) {
-  //       console.log("That's right");
-  //     }
-  //   }
-  // }
+  const copies = copy
+    .filter((el) => {
+      if (search_input_final === null) {
+        return copy;
+      } else if (
+        el.copy.toLowerCase().includes(search_input_final) ||
+        el.scenario.toLowerCase().includes(search_input_final)
+      ) {
+        return copy;
+      }
+      return "";
+    })
+    .map((el) => {
+      return (
+        <div className="customisation_section_inner_copycards_card" key={el.id}>
+          <div className="">
+            {el.copy
+              .replace("XYZ", custom_input)
+              .replace("XYZ", custom_input)
+              .replace("XYZ", custom_input)}
+          </div>
+          <div
+            className=""
+            onClick={() => {
+              navigator.clipboard.writeText(
+                el.copy
+                  .replace("XYZ", custom_input)
+                  .replace("XYZ", custom_input)
+                  .replace("XYZ", custom_input)
+              );
+              notify();
+            }}
+          >
+            <img src={copy_icon} className="copy_icon" alt="copy_icon"></img>
+          </div>
+          <div className="">{el.scenario}</div>
+          <div className="">{el.tone_of_voice}</div>
+        </div>
+      );
+    });
 
-  // let search_input_final = search_input_initial.toLowerCase();
-  // let all_copies = copy[i].copy.includes(search_input_final);
-  // if (all_copies === true) {
-  //   alert("Peter");
-  // }
-
-  // if (search_input.length > 0) {
-  //   copy.map(function (el) {
-  //     let matched_copy = el.copy
-  //       .toLowerCase()
-  //       .includes(search_input.toLowerCase());
-  //     return console.log(matched_copy);
-  //   });
-  // }
-
-  // if (search_input.length > 0) {
-  //   // copy.map(function (el) {
-  //   //   let matched_copy = el.copy.includes(search_input)
-  //   //   let test = matched_copy;
-  //   //   return console.log(test);
-  //   // });
-  //   const arr = [{ a: "b" }];
-  //   console.log(arr.some((item) => item.a === "b"))
-  // }
-
-  // if (search_input.length > 0) {
-  //   data.map(function (el) {
-  //     return console.log(el.data)
-  //   });
-  // }
-
-  // if (search_input.length > 0) {
-  //   // the code you're looking for
-  //   var needle = search_input.toLowerCase();
-  //   // iterate over each element in the array
-  //   for (var i = 0; i < copy.length; i++) {
-  //     // look for the entry with a matching `code` value
-  //     let matched_output = copy[i].copy.toLowerCase().includes(needle);
-  //     if (matched_output ===   true) {
-  //       return copy;
-  //       // console.log("Got it!");
-  //       // obj[i].name is the matched result
-  //     }
-  //   }
-  // }
 
   return (
     <div className="">
@@ -127,16 +114,15 @@ function App() {
         </div>
       </div> */}
       <div className="customisation_section">
-        <div className="customisation_section_inner">
+        <div className="customisation_section_inner make_sticky">
           <div className="customisation_section_inner_introductiontext">
             <p>Search for any copy you need</p>
-            <p id="demo">Test</p>
             <input
               className="hero_section_art_firstpanel_searchbox_input customise_input primary_bar"
               placeholder="Search copy/scenario"
               style={{ border: "none" }}
               name="search_input"
-              onKeyUp={handleChange_onsearch}
+              onChange={(e) => handleChange_onsearch(e)}
             ></input>
             <p style={{ marginBottom: "10px" }}>...then make it custom </p>
             <input
@@ -149,64 +135,27 @@ function App() {
             <div></div>
           </div>
 
-          <ToastContainer /> 
-          
+          <ToastContainer />
 
           <div className="customisation_section_inner_copycards">
-
             {loading_copies === false ? (
-            <div className="center_image">
-              <div>
-                <p>Your list of copies should appear here. Loading...</p>
-              </div>
-              <div>
-                <img
-                  src={copybuddy_spinner}
-                  alt="copybuddy_spinner"
-                  className="copybuddy_spinner"
-                ></img>
-              </div>
-            </div>
-            ): <div> {copy.map((el) => (
-              <div
-                className="customisation_section_inner_copycards_card"
-                key={el.id}
-              >
-                <div className="">
-                  {el.copy
-                    .replace("XYZ", custom_input)
-                    .replace("XYZ", custom_input)
-                    .replace("XYZ", custom_input)}
+              <div className="center_image">
+                <div>
+                  <p>Your list of copies should appear here. Loading...</p>
                 </div>
-                <div
-                  className=""
-                  onClick={() => {
-                    navigator.clipboard.writeText(
-                      el.copy
-                        .replace("XYZ", custom_input)
-                        .replace("XYZ", custom_input)
-                        .replace("XYZ", custom_input)
-                    );
-                    notify();
-                  }}
-                >
+                <div>
                   <img
-                    src={copy_icon}
-                    className="copy_icon"
-                    alt="copy_icon"
+                    src={copybuddy_spinner}
+                    alt="copybuddy_spinner"
+                    className="copybuddy_spinner"
                   ></img>
                 </div>
-                <div className="">{el.scenario}</div>
-                <div className="">{el.tone_of_voice}</div>
               </div>
-            ))}</div>}
-            
-           
-
+            ) : (
+              <div>{copies}</div>
+            )}
           </div>
-
         </div>
-
       </div>
 
       <div className="support_section">
