@@ -498,7 +498,7 @@
 .support_section_innerbox_card {
   display: flex;
   flex-direction: row;
-  padding: 120px 70px;
+  padding: 90px 70px;
   color: white;
   font-family: Circular Std;
   font-style: normal;
@@ -507,6 +507,7 @@
   line-height: 38px;
   cursor: pointer;
   text-decoration: none;
+  height: 30vh;
   &.primary_card {
     background: #d87342;
   }
@@ -517,12 +518,21 @@
     color: #ffffff;
     // text-decoration: underline;
   }
+  & > div > span > a.link.custom{
+    display: block;
+    text-decoration: underline;
+  }
+  
   background: #151515;
 }
 
 a.link {
   color: #ffffff;
   text-decoration: none;
+}
+a.link.custom{
+  display: block;
+  text-decoration: underline;
 }
 
 @media (max-width: 990px) {
@@ -567,3 +577,33 @@ a.link {
   position: sticky;
   top: 0;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.Toastify__toast--success {
+  background: #d87342 !important;
+}
+
+@import url(//db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book);
+
+.Toastify__toast-body {
+  font-family: "Circular Std";
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot");
+  src: url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/860c3ec7bbc5da3e97233ccecafe512e.svg#Circular Std Book")
+      format("svg");
+}
+

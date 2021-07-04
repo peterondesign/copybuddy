@@ -17,18 +17,6 @@ function App() {
   const [search_input_initial, setSearchInput] = useState("");
   let search_input_final = search_input_initial.toLowerCase();
 
-  // const [page, setPage] = useState(0),
-  //   maxPage = Math.ceil(data.length / 5),
-  //   onNextPage = () => setPage((page + 1) % maxPage),
-  //   onPrevPage = () => setPage((page + 5 - 1) % maxPage);
-
-  // {
-  //   copy.slice(page * 5, 5 * (page + 1)).map((content, key) => (
-  //     <div item {...{ key }}>
-  //       <div className="paper">{content}</div>
-  //     </div>
-  //   ));
-  // }
 
   const notify = () =>
     toast.success("Copied to clipboard", {
@@ -113,6 +101,8 @@ function App() {
           </a>
         </div>
       </div> */}
+
+      
       <div className="customisation_section">
         <div className="customisation_section_inner make_sticky">
           <div className="customisation_section_inner_introductiontext">
