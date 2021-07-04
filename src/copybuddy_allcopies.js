@@ -5,6 +5,7 @@ import Tabletop from "tabletop";
 // import logo from "./copybuddy_logo_white.svg";
 import long_arrow_right from "./arrow_white.svg";
 import copy_icon from "./copy_icon.svg";
+import copybuddy_spinner from "./copybuddy_spinner2.gif";
 import "./copybuddy.scss";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -12,7 +13,21 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [custom_input, setInput] = useState("XYZ");
-  const [search_input, setSearchInput] = useState("");
+  let [loading_copies, setCopies] = useState(false);
+  const [search_input_initial, setSearchInput] = useState("");
+
+  // const [page, setPage] = useState(0),
+  //   maxPage = Math.ceil(data.length / 5),
+  //   onNextPage = () => setPage((page + 1) % maxPage),
+  //   onPrevPage = () => setPage((page + 5 - 1) % maxPage);
+
+  // {
+  //   copy.slice(page * 5, 5 * (page + 1)).map((content, key) => (
+  //     <div item {...{ key }}>
+  //       <div className="paper">{content}</div>
+  //     </div>
+  //   ));
+  // }
 
   const notify = () =>
     toast.success("Copied to clipboard", {
@@ -23,14 +38,17 @@ function App() {
   // const [only10, show10] = useState("show1")
 
   const [data, setData] = useState({});
+
   useEffect(() => {
     Tabletop.init({
       key: "1I2oOEzY3Anpra-QAdlWpkcCciZi8XE4q_cponlal8PQ",
       simpleSheet: true,
     }).then(function (data) {
       setData(data);
+      setCopies(true);
     });
   }, []);
+
   const copy = Array.from(data);
 
   function handleChange_oncustomiseinput(e) {
@@ -40,6 +58,31 @@ function App() {
   function handleChange_onsearch(s) {
     setSearchInput(s.target.value);
   }
+
+  // if (search_input_initial.length > 0) {
+  //   let search_input_final = search_input_initial.toLowerCase();
+  //   console.log("Got it!");
+  //   for (var i = 0; i < copy.length; i++) {
+  //     if (search_input_final === copy) {
+  //       console.log("That's right");
+  //     }
+  //   }
+  // }
+
+  // let search_input_final = search_input_initial.toLowerCase();
+  // let all_copies = copy[i].copy.includes(search_input_final);
+  // if (all_copies === true) {
+  //   alert("Peter");
+  // }
+
+  // if (search_input.length > 0) {
+  //   copy.map(function (el) {
+  //     let matched_copy = el.copy
+  //       .toLowerCase()
+  //       .includes(search_input.toLowerCase());
+  //     return console.log(matched_copy);
+  //   });
+  // }
 
   // if (search_input.length > 0) {
   //   // copy.map(function (el) {
@@ -93,7 +136,7 @@ function App() {
               placeholder="Search copy/scenario"
               style={{ border: "none" }}
               name="search_input"
-              onChange={handleChange_onsearch}
+              onKeyUp={handleChange_onsearch}
             ></input>
             <p style={{ marginBottom: "10px" }}>...then make it custom </p>
             <input
@@ -106,10 +149,25 @@ function App() {
             <div></div>
           </div>
 
-          <ToastContainer />
+          <ToastContainer /> 
+          
 
           <div className="customisation_section_inner_copycards">
-            {copy.map((el) => (
+
+            {loading_copies === false ? (
+            <div className="center_image">
+              <div>
+                <p>Your list of copies should appear here. Loading...</p>
+              </div>
+              <div>
+                <img
+                  src={copybuddy_spinner}
+                  alt="copybuddy_spinner"
+                  className="copybuddy_spinner"
+                ></img>
+              </div>
+            </div>
+            ): <div> {copy.map((el) => (
               <div
                 className="customisation_section_inner_copycards_card"
                 key={el.id}
@@ -141,9 +199,14 @@ function App() {
                 <div className="">{el.scenario}</div>
                 <div className="">{el.tone_of_voice}</div>
               </div>
-            ))}
+            ))}</div>}
+            
+           
+
           </div>
+
         </div>
+
       </div>
 
       <div className="support_section">

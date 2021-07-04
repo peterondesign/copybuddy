@@ -551,3 +551,13 @@ a.link {
 .primary_bar {
   border: 1px solid #d87342 !important;
 }
+
+.center_image{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  >p{
+    display: block;
+  }
+}
