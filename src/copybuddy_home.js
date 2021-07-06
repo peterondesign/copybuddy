@@ -13,6 +13,8 @@ import right_panel from "./hero_section_art_secondpanel.png";
 import floating_box from "./hero_section_art_floating_box.svg";
 import arrow_right from "./categories_section_inner_copy_categories_category_arrow_right_black.svg";
 import long_arrow_right from "./arrow_white.svg";
+import dropdown_button from "./dropdown_button.svg";
+
 import copy_icon from "./copy_icon.svg";
 import copybuddy_spinner from "./copybuddy_spinner2.gif";
 
@@ -21,6 +23,7 @@ function App() {
   let [loading_copies, setCopies] = useState(false);
   const [search_input_initial, setSearchInput] = useState("");
   let search_input_final = search_input_initial.toLowerCase();
+  const [loadMore, setloadMore] = useState("2");
 
   const notify = () =>
     toast.success("Copied to clipboard", {
@@ -59,6 +62,12 @@ function App() {
     document.getElementById("copy_area").scrollIntoView("copy_area");
   }
 
+  function handle_loadMore() {
+    setloadMore(loadMore + 1);
+    let dropdown_button = document.getElementById("dropdown_button");
+    dropdown_button.classList.toggle("rotate_180");
+    console.log("Got it");
+  }
 
   const copies = copy
     .filter((el) => {
@@ -71,9 +80,10 @@ function App() {
       ) {
         return copy;
       }
-      return "";
+      return false;
     })
-    .slice(0, 9).map((el) => {
+    .slice(0, loadMore)
+    .map((el) => {
       return (
         <div className="customisation_section_inner_copycards_card" key={el.id}>
           <div className="">
@@ -292,7 +302,21 @@ function App() {
                 </div>
               ) : (
                 <div>
-                    {copies}
+                  {copies}
+                  <div className="categories_section_inner_button_box">
+                    <a
+                      href="#copy_area"
+                      className="categories_section_inner_button_box_button no_borders"
+                      onClick={handle_loadMore}
+                    >
+                      <img
+                        className="dropdown_button"
+                        alt="dropdown_button"
+                        id="dropdown_button"
+                        src={dropdown_button}
+                      ></img>
+                    </a>
+                  </div>
                 </div>
               )}
             </div>
@@ -371,6 +395,19 @@ function App() {
                 </div>
               </div>
             </a>
+          </div>
+        </div>
+        <div className="email_section">
+          <p>Stay up to date with our little tool</p>
+          <div>
+            <form id="sib-form" method="POST" action="https://f386e063.sibforms.com/serve/MUIEABqokMK_klYLK_Zv3esLQUfeaA_I20g5-zPg-MRQd8Lp5OwCoRxUUhVzYwCCiy0XoD52108k60fnMZwECdlx0_evAyx1a9ksgoo3qopMr3UOdJPSnHi1qfswlTszRG791Y7kOvKZbm1MYLRqOlospmpj9ibTPk9ovjyjUCGsdw-LnQuLuvDg5Vso4Iylrg1hya6DKskkOSj_" data-type="subscription" style={{textAlign: "center"}}>
+              <input
+                className="hero_section_art_firstpanel_searchbox_input"
+                placeholder="Enter email address"
+                style={{ border: "none" }} type="text" id="EMAIL" name="EMAIL" autocomplete="off" data-required="true" required
+              ></input>
+              <input type="submit" class="submit_button" form="sib-form" value="Submit" />
+            </form>
           </div>
         </div>
       </div>

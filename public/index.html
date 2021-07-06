@@ -2,8 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" />
-    <link href="//db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="%PUBLIC_URL%/copybuddy.svg" />
+    <link
+      href="//db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book"
+      rel="stylesheet"
+      type="text/css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -16,6 +20,10 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://sibforms.com/forms/end-form/build/sib-styles.css"
+    />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -26,6 +34,41 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Copybuddy | Copy tool for UX</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0MJBP86JE3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-0MJBP86JE3");
+    </script>
+    <script src="https://sibforms.com/forms/end-form/build/main.js"></script>
+    <script>
+      window.REQUIRED_CODE_ERROR_MESSAGE = "Please choose a country code";
+      window.LOCALE = "en";
+      window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+        "The information provided is invalid. Please review the field format and try again.";
+
+      window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+
+      window.GENERIC_INVALID_MESSAGE =
+        "The information provided is invalid. Please review the field format and try again.";
+
+      window.translation = {
+        common: {
+          selectedList: "{quantity} list selected",
+          selectedLists: "{quantity} lists selected",
+        },
+      };
+
+      var AUTOHIDE = Boolean(0);
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
